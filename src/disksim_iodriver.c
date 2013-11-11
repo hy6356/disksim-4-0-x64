@@ -749,15 +749,25 @@ event * iodriver_request (int iodriverno, ioreq_event *curr)
    int numreqs;
 /*
    printf ("Entered iodriver_request - simtime %f, devno %d, blkno %d, cause %d\n", simtime, curr->devno, curr->blkno, curr->cause);
+<<<<<<< HEAD
    fprintf (stderr, "Entered iodriver_request - simtime %f, devno %d, blkno %d, cause %d\n", simtime, curr->devno, curr->blkno, curr->cause);
 */
 //   fprintf (outputfile, "Entered iodriver_request - simtime %f, devno %d, blkno %d, cause %d\n", simtime, curr->devno, curr->blkno, curr->cause);
+=======
+   fprintf (outputfile, "Entered iodriver_request - simtime %f, devno %d, blkno %d, cause %d\n", simtime, curr->devno, curr->blkno, curr->cause);
+   fprintf (stderr, "Entered iodriver_request - simtime %f, devno %d, blkno %d, cause %d\n", simtime, curr->devno, curr->blkno, curr->cause);
+*/
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
    if (outios) {
       fprintf(outios, "%.6f\t%d\t%d\t%d\t%x\n", simtime, curr->devno, curr->blkno, curr->bcount, curr->flags);
    }
 
 #if 0
+<<<<<<< HEAD
 //   fprintf (stderr, "Entered iodriver_request - simtime %f, devno %d, blkno %d, cause %d\n", simtime, curr->devno, curr->blkno, curr->cause);
+=======
+   fprintf (stderr, "Entered iodriver_request - simtime %f, devno %d, blkno %d, cause %d\n", simtime, curr->devno, curr->blkno, curr->cause);
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 #endif
 
    /* add to the overall queue to start tracking */
@@ -1069,7 +1079,11 @@ static void add_driver(iodriver *d) {
   disksim->iodriver_info->iodrivers_len = newlen;
   iodrivers = realloc(iodrivers, newlen * sizeof(iodriver *));
   zerocnt = c ? c : 2;
+<<<<<<< HEAD
   bzero(&(iodrivers[c]), zerocnt * sizeof(iodriver *));
+=======
+  bzero((struct iodriver*)iodrivers + c, zerocnt * sizeof(iodriver *));
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   iodrivers[c] = d;
   numiodrivers++;
@@ -1079,11 +1093,21 @@ struct iodriver *disksim_iodriver_loadparams(struct lp_block *b) {
   iodriver *result;
 
   if (disksim->iodriver_info == NULL) {
+<<<<<<< HEAD
     disksim->iodriver_info = calloc (1, sizeof(iodriver_info_t));
   }
   overallqueue = ioqueue_createdefaultqueue ();
    
   result = calloc(1, sizeof(iodriver));
+=======
+    disksim->iodriver_info = malloc (sizeof(iodriver_info_t));
+    bzero ((char *)disksim->iodriver_info, sizeof(iodriver_info_t));
+  }
+  overallqueue = ioqueue_createdefaultqueue ();
+   
+  result = malloc(sizeof(iodriver));
+  bzero(result, sizeof(iodriver));
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   add_driver(result);
 
@@ -1153,7 +1177,12 @@ int load_iodriver_topo(struct lp_topospec *t, int len) {
 
 
 static iodriver *driver_copy(iodriver *orig) {
+<<<<<<< HEAD
   iodriver *result = calloc(1, sizeof(iodriver));
+=======
+  iodriver *result = malloc(sizeof(iodriver));
+  bzero(result, sizeof(iodriver));
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   memcpy(result, orig, sizeof(iodriver));
   result->queue = ioqueue_copy(orig->queue);
   return result;
@@ -1183,7 +1212,11 @@ int iodriver_load_logorg(struct lp_block *b) {
 
   sysorgs = realloc(sysorgs, newlen * sizeof(struct logorg *));
 
+<<<<<<< HEAD
   bzero(&(sysorgs[zeroOff]), 
+=======
+  bzero(sysorgs + zeroOff, 
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 	(zeroOff ? numsysorgs : 2) * sizeof(struct logorg *));
 
   disksim->iodriver_info->sysorgs_len = newlen;
@@ -1249,7 +1282,10 @@ void iodriver_printstats()
    }
 
    free(queueset);
+<<<<<<< HEAD
    queueset = NULL;
+=======
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 

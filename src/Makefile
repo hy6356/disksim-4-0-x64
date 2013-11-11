@@ -32,8 +32,13 @@ FLEX = flex
 
 include .paths
 
+<<<<<<< HEAD
 LDFLAGS = -L. -ldisksim $(DISKMODEL_LDFLAGS) $(MEMSMODEL_LDFLAGS)\
                             $(LIBPARAM_LDFLAGS) $(LIBDDBG_LDFLAGS) -lm 
+=======
+LDFLAGS = -lm -L. -ldisksim $(DISKMODEL_LDFLAGS) $(MEMSMODEL_LDFLAGS) \
+                            $(LIBPARAM_LDFLAGS) $(LIBDDBG_LDFLAGS) 
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
 HP_FAST_OFLAGS = +O4
 NCR_FAST_OFLAGS = -O4 -Hoff=BEHAVED 
@@ -41,7 +46,11 @@ FREEBLOCKS_OFLAGS =
 DEBUG_OFLAGS = -g -DASSERTS # -DDEBUG=1
 PROF_OFLAGS = -g -DASSERTS -p
 GPROF_OFLAGS = -g -DASSERTS -pg
+<<<<<<< HEAD
 CFLAGS = -I. -fPIC $(DISKMODEL_CFLAGS) $(LIBPARAM_CFLAGS) $(LIBDDBG_CFLAGS) $(DEBUG_OFLAGS) $(FREEBLOCKS_OFLAGS) $(MEMSMODEL_CFLAGS) -D_INLINE 
+=======
+CFLAGS = -I. $(DISKMODEL_CFLAGS) $(LIBPARAM_CFLAGS) $(LIBDDBG_CFLAGS) $(DEBUG_OFLAGS) $(FREEBLOCKS_OFLAGS) $(MEMSMODEL_CFLAGS) -D_INLINE 
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
 FBSYSSIM_OFLAGS = -O6 -fomit-frame-pointer -fexpensive-optimizations -fschedule-insns2
 
@@ -119,7 +128,11 @@ hplcomb : hplcomb.c
 	$(CC) $< -o $@
 
 libdisksim.a: $(MODULEDEPS) $(DISKSIM_OBJ) disksim_interface.o
+<<<<<<< HEAD
 	ar crus $@ $(DISKSIM_OBJ) disksim_interface.o modules/*.o
+=======
+	ar cru $@ $(DISKSIM_OBJ) disksim_interface.o modules/*.o
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 	ranlib $@
 	mkdir -p ../lib
 	cp libdisksim.a ../lib
@@ -130,6 +143,7 @@ disksim : $(MODULEDEPS) libdisksim.a disksim_main.o
 syssim: syssim_driver.o libdisksim.a
 	$(CC) $(CFLAGS) -o $@ syssim_driver.o disksim_interface.o $(LDFLAGS)
 
+<<<<<<< HEAD
 skippy: skippy_sim.o libdisksim.a
 	$(CC) $(CFLAGS) -o $@ skippy_sim.o syssim_opts.o disksim_interface.o $(LDFLAGS)
 
@@ -140,6 +154,8 @@ seek2: seek_sim2.o libdisksim.a
 	$(CC) $(CFLAGS) -o $@ seek_sim2.o syssim_opts.o disksim_interface.o $(LDFLAGS)
 
 
+=======
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 ########################################################################
 
 # rule to automatically generate dependencies from source files

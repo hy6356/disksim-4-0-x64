@@ -150,7 +150,10 @@ lp_new_param(char *name, char *source, struct lp_value *v)
 {
   struct lp_param *result = calloc(1, sizeof(struct lp_param));
   result->source_file = source;
+<<<<<<< HEAD
   //result->name = name;
+=======
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   result->name = strdup(name);
   result->v = v;
   
@@ -226,7 +229,10 @@ static void destroy_param(struct lp_param *p)
   free(p->name);
   destroy_value(p->v);
   free(p);
+<<<<<<< HEAD
   p = NULL;
+=======
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -238,7 +244,10 @@ static void destroy_list(struct lp_list *l) {
 
   free(l->values);
   free(l);
+<<<<<<< HEAD
   l = NULL;
+=======
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -268,7 +277,10 @@ static void destroy_value(struct lp_value *v) {
   }
 
   free(v);
+<<<<<<< HEAD
   v = NULL;
+=======
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -283,7 +295,10 @@ static void destroy_block(struct lp_block *b) {
   free(b->name);
   free(b->params);
   free(b);
+<<<<<<< HEAD
   b = NULL;
+=======
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 static void destroy_topospec(struct lp_topospec *t)
@@ -291,7 +306,10 @@ static void destroy_topospec(struct lp_topospec *t)
   free(t->type);
   free(t->name);
   destroy_list(t->l);
+<<<<<<< HEAD
   t = NULL;
+=======
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -729,7 +747,11 @@ struct lp_list *lp_list_add(struct lp_list *l,
   }
   newlen = 2 * c * sizeof(struct lp_value *);
   l->values = realloc(l->values, newlen);
+<<<<<<< HEAD
   bzero(&(l->values[c]), newlen / 2);
+=======
+  bzero(l->values + c, newlen / 2);
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   l->values_len *= 2;
 
  done:
@@ -912,7 +934,11 @@ int lp_add_type(char *newt, char *parent) {
 
     lp_typetbl = realloc(lp_typetbl, newlen * sizeof(int *));
 
+<<<<<<< HEAD
     bzero(&(lp_typetbl[c]), c * sizeof(int *));
+=======
+    bzero(lp_typetbl + c, c * sizeof(int *));
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
     lp_typetbl_len = newlen;
   }
   else return -1;
@@ -948,7 +974,11 @@ int lp_add_param(struct lp_param ***b, int *plen,
     /* didn't find a free slot -- double the array */
     int newlen = 2 * (*plen) + 1;
     (*b) = realloc((*b), newlen * sizeof(int *));
+<<<<<<< HEAD
     bzero((int *)((*b)[*plen]), ((*plen) + 1) * sizeof(int*));
+=======
+    bzero((int *)(*b) + *plen, ((*plen) + 1) * sizeof(int*));
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
     (*b)[(*plen)] = p;
     *plen = newlen;
   }
@@ -988,7 +1018,12 @@ void lp_init_typetbl(void) {
 
   for(c = 0; c < lp_max_mod; c++) {
 
+<<<<<<< HEAD
     lp_typetbl[c] = calloc(1, sizeof(struct lp_subtype));
+=======
+    lp_typetbl[c] = malloc(sizeof(struct lp_subtype));
+    bzero(lp_typetbl[c], sizeof(struct lp_subtype));
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
     lp_typetbl[c]->sub = strdup(lp_modules[c]->name);
   }
 
@@ -1014,7 +1049,10 @@ void lp_release_typetbl(void) {
   }
 
   free(lp_typetbl);
+<<<<<<< HEAD
   lp_typetbl = NULL;
+=======
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -1361,7 +1399,10 @@ lp_loadparams(void *it, struct lp_block *b, struct lp_mod *m) {
   }
 
   free(paramvec);
+<<<<<<< HEAD
   paramvec = NULL;
+=======
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   return 0; // ???
 }

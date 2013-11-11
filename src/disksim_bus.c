@@ -569,7 +569,12 @@ static int disksim_bus_printarbwaitstats;
 int disksim_bus_stats_loadparams(struct lp_block *b) {
    
   if(!disksim->businfo) {
+<<<<<<< HEAD
     disksim->businfo = calloc(1, sizeof(businfo_t));
+=======
+    disksim->businfo = malloc(sizeof(businfo_t));
+    bzero(disksim->businfo, sizeof(businfo_t));
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   }
 
 
@@ -680,7 +685,12 @@ bus *disksim_bus_loadparams(struct lp_block *b,
   int c;
 
   if(!disksim->businfo) {
+<<<<<<< HEAD
     disksim->businfo = calloc(1, sizeof(businfo_t));
+=======
+    disksim->businfo = malloc(sizeof(businfo_t));
+    bzero(disksim->businfo, sizeof(businfo_t));
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   }
 
   //   disksim->businfo->bus_printidlestats = disksim_bus_printidlestats;
@@ -695,11 +705,19 @@ bus *disksim_bus_loadparams(struct lp_block *b,
      int newlen = c ? 2*c : 2;
      
      disksim->businfo->buses = realloc(disksim->businfo->buses,
+<<<<<<< HEAD
 				       newlen * sizeof(void*));
      if(newlen > 2)
        bzero(&(disksim->businfo->buses[c]), (newlen/2)*sizeof(void*));
      else 
        bzero(disksim->businfo->buses, newlen * sizeof(void*));
+=======
+				       newlen * sizeof(int*));
+     if(newlen > 2)
+       bzero(disksim->businfo->buses + c, (newlen/2)*sizeof(int *));
+     else 
+       bzero(disksim->businfo->buses, 2 * sizeof(int *));
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
      disksim->businfo->buses_len = newlen;
 
@@ -749,8 +767,13 @@ int load_bus_topo(struct lp_topospec *t, int *parentctlno) {
   /* if this bus is the child of a controller */
   if(parentctlno) { b->numslots++; }
 
+<<<<<<< HEAD
   b->slots = calloc(b->numslots, sizeof(slot));
   //  bzero(b->slots, b->numslots * sizeof(slot));
+=======
+  b->slots = malloc(b->numslots * sizeof(slot));
+  bzero(b->slots, b->numslots * sizeof(slot));
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   if(parentctlno) {
     b->slots[0].devtype = CONTROLLER;

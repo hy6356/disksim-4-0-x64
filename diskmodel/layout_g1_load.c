@@ -204,9 +204,15 @@ static void checknumblocks(struct dm_layout_g1 *d) {
     numblocks += d->bands[i].blksinband;
   }
   if (numblocks != d->disk->dm_sectors) {
+<<<<<<< HEAD
         fprintf (outputfile, "*** warning: Numblocks provided by user does not"
         " match specifications - user %d, actual %d\n",
         d->disk->dm_sectors, numblocks);
+=======
+    //    fprintf (outputfile, "*** warning: Numblocks provided by user does not"
+    //	     " match specifications - user %d, actual %d\n",
+    //	     d->disk->dm_sectors, numblocks);
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   }
   d->disk->dm_sectors = numblocks;
 }

@@ -146,7 +146,11 @@ int disk_add(struct disk *d) {
   /* note that numdisks must be equal to diskinfo->disks_len */
   disksim->diskinfo->disks = realloc(disksim->diskinfo->disks, 
 			   2 * NUMDISKS * sizeof(disk *));
+<<<<<<< HEAD
   bzero(&(disksim->diskinfo->disks[NUMDISKS]), NUMDISKS*sizeof(disk*));
+=======
+  bzero(disksim->diskinfo->disks + NUMDISKS, NUMDISKS);
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   disksim->diskinfo->disks[c] = d;
   NUMDISKS++;
   disksim->diskinfo->disks_len *= 2;
@@ -412,9 +416,15 @@ static void disk_postpass_perdisk (disk *currdisk)
     fprintf(stderr, "Must have more segments than dedicated write segments\n");
     ddbg_assert(0);;
   }
+<<<<<<< HEAD
   if ((currdisk->dedicatedwriteseg != NULL) &&
       (currdisk->dedicatedwriteseg != (void*)1)) {
     fprintf(stderr, "Invalid value for dedicatedwriteseg in disk_postpass_perdisk: %ld\n", (long)currdisk->dedicatedwriteseg);
+=======
+  if (((int)currdisk->dedicatedwriteseg != 0) &&
+      ((int)currdisk->dedicatedwriteseg != 1)) {
+    fprintf(stderr, "Invalid value for dedicatedwriteseg in disk_postpass_perdisk: %d\n", (int)currdisk->dedicatedwriteseg);
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
     ddbg_assert(0);;
   }
 
@@ -500,10 +510,19 @@ void disk_setcallbacks ()
 
 static void disk_initialize_diskinfo ()
 {
+<<<<<<< HEAD
   disksim->diskinfo = calloc (1, sizeof(disk_info_t));
 
   disksim->diskinfo->disks = (struct disk**) calloc(1, MAXDEVICES * sizeof(disk));
   disksim->diskinfo->disks_len = MAXDEVICES;
+=======
+  disksim->diskinfo = malloc (sizeof(disk_info_t));
+  bzero ((char *)disksim->diskinfo, sizeof(disk_info_t));
+
+  disksim->diskinfo->disks = (struct disk**) malloc(MAXDEVICES * sizeof(disk));
+  disksim->diskinfo->disks_len = MAXDEVICES;
+  bzero ((char *)disksim->diskinfo->disks, (MAXDEVICES * sizeof(disk)));
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   /* important initialization of stuff that gets remapped into diskinfo */
   disk_printhacktime = 0.0;
@@ -868,9 +887,15 @@ disk *disksim_disk_loadparams(struct lp_block *b,
   disk_postpass();
   disk_syncset_init();
 
+<<<<<<< HEAD
   result = calloc(1, sizeof(disk));
   if(!result) return 0;
   //  memset(result, 0, sizeof(struct disk));
+=======
+  result = malloc(sizeof(disk));
+  if(!result) return 0;
+  memset(result, 0, sizeof(struct disk));
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   result->hdr = disk_hdr_initializer;
   result->hdr.device_name = strdup(b->name);

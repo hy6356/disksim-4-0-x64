@@ -211,9 +211,15 @@ void io_interrupt_complete (ioreq_event *intrp)
 void io_internal_event(ioreq_event *curr)
 {
    ASSERT(curr != NULL);
+<<<<<<< HEAD
 
 //   fprintf (outputfile, "%f: io_internal_event entered with event type %d, %f\n", curr->time, curr->type, simtime);
 
+=======
+/*
+fprintf (outputfile, "%f: io_internal_event entered with event type %d, %f\n", curr->time, curr->type, simtime);
+*/
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
    switch (curr->type) {
    case IO_REQUEST_ARRIVE:
      iodriver_request(0, curr);

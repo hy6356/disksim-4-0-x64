@@ -34,8 +34,11 @@ MODULE ctlr
 HEADER \#include "../disksim_ctlr.h"
 RESTYPE struct controller *
 PROTO struct controller *disksim_ctlr_loadparams(struct lp_block *b);
+<<<<<<< HEAD
 PROTO struct ioq *disksim_ioqueue_loadparams(struct lp_block *b, int printqueuestats, int printcritstats, int printidlestats, int printintarrstats, int printsizestats);
 PROTO struct cache_if *disksim_cache_loadparams(struct lp_block *b);
+=======
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
 PARAM type				I	1 
 TEST RANGE(i,1,3)
@@ -104,7 +107,11 @@ controller.  It is meaningless for the simple types of controllers
 
 
 PARAM Scheduler				BLOCK	0 
+<<<<<<< HEAD
 TEST result->queue = disksim_ioqueue_loadparams(blk, disksim->ctlrinfo->ctl_printqueuestats, disksim->ctlrinfo->ctl_printcritstats, disksim->ctlrinfo->ctl_printidlestats, disksim->ctlrinfo->ctl_printintarrstats,disksim->ctlrinfo->ctl_printsizestats)
+=======
+TEST result->queue = (struct ioq *)disksim_ioqueue_loadparams(blk, disksim->ctlrinfo->ctl_printqueuestats, disksim->ctlrinfo->ctl_printcritstats, disksim->ctlrinfo->ctl_printidlestats, disksim->ctlrinfo->ctl_printintarrstats,disksim->ctlrinfo->ctl_printsizestats)
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 # INIT ioqueue_initialize(result->queue, 0);
 
 This is an ioqueue; see section \ref{param.queue}

@@ -34,7 +34,10 @@ MODULE iodriver
 HEADER \#include "../disksim_iodriver.h"
 RESTYPE struct iodriver *
 PROTO struct iodriver *disksim_iodriver_loadparams(struct lp_block *b);
+<<<<<<< HEAD
 PROTO struct ioq *disksim_ioqueue_loadparams(struct lp_block *b, int printqueuestats, int printcritstats, int printidlestats, int printintarrstats, int printsizestats);
+=======
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
 PARAM type				I	1
 TEST i >= 0 
@@ -74,7 +77,11 @@ whether or not queueing in the subsystem is appropriate.
 
 
 PARAM Scheduler				BLOCK	1
+<<<<<<< HEAD
 TEST result->queue = disksim_ioqueue_loadparams(blk, drv_printqueuestats, drv_printcritstats, drv_printidlestats, drv_printintarrstats, drv_printsizestats)
+=======
+TEST result->queue = (struct ioq *)disksim_ioqueue_loadparams(blk, drv_printqueuestats, drv_printcritstats, drv_printidlestats, drv_printintarrstats, drv_printsizestats)
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 # INIT ioqueue_initialize(result->queue, 0);
 
 This is an ioqueue; see section \ref{param.queue}.

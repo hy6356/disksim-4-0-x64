@@ -181,7 +181,11 @@ g1_st_pbn(struct dm_disk_if *d, struct dm_pbn *p) {
   struct dm_layout_g1_band *b;
 
   while(!(b = find_band_pbn(l, &p2)) && p2.cyl >= 0) { p2.cyl--; }
+<<<<<<< HEAD
   ddbg_assert_ptr(b);
+=======
+  ddbg_assert(b);
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
 
   return b->blkspertrack;
@@ -489,7 +493,11 @@ g1_ptol_nosparing(struct dm_disk_if *d,
   p = &pbn;
 
 
+<<<<<<< HEAD
   ddbg_assert_ptr(b);
+=======
+  ddbg_assert(b);
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   ddbg_assert(p->cyl >= 0);
   ddbg_assert(p->cyl >= b->startcyl);
   ddbg_assert(p->cyl < d->dm_cyls);
@@ -528,7 +536,11 @@ g1_ptol_sectpertrackspare(struct dm_disk_if *d,
   struct dm_pbn pbn = *p;
   p = &pbn;
 
+<<<<<<< HEAD
   ddbg_assert_ptr(b);
+=======
+  ddbg_assert(b);
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   ddbg_assert(p->cyl >= 0);
   ddbg_assert(p->cyl >= b->startcyl);
   ddbg_assert(p->cyl < d->dm_cyls);
@@ -699,7 +711,11 @@ g1_ptol_sectperrangespare(struct dm_disk_if *d,
   p = &pbn;
 
 
+<<<<<<< HEAD
   ddbg_assert_ptr(b);
+=======
+  ddbg_assert(b);
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   ddbg_assert(p->cyl >= 0);
   ddbg_assert(p->cyl >= b->startcyl);
   ddbg_assert(p->cyl < d->dm_cyls);
@@ -776,7 +792,11 @@ g1_ptol_sectperzonespare(struct dm_disk_if *d,
   p = &pbn;
 
 
+<<<<<<< HEAD
   ddbg_assert_ptr(b);
+=======
+  ddbg_assert(b);
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   ddbg_assert(p->cyl >= 0);
   ddbg_assert(p->cyl >= b->startcyl);
   ddbg_assert(p->cyl < d->dm_cyls);
@@ -848,7 +868,11 @@ g1_ptol_trackspare(struct dm_disk_if *d,
   struct dm_pbn pbn = *p;
   p = &pbn;
 
+<<<<<<< HEAD
   ddbg_assert_ptr(b);
+=======
+  ddbg_assert(b);
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   ddbg_assert(p->cyl >= 0);
   ddbg_assert(p->cyl >= b->startcyl);
   ddbg_assert(p->cyl < d->dm_cyls);
@@ -1935,11 +1959,17 @@ g1_get_zone(struct dm_disk_if *d,
 	    struct dm_layout_zone *result)
 {
   struct dm_layout_g1 *l = (struct dm_layout_g1 *)d->layout;
+<<<<<<< HEAD
 //  struct dm_layout_g1_band *z;
   struct dm_layout_g1_band *z = calloc(sizeof(struct dm_layout_g1_band),1);
 
   // check args  
 //  if(z == 0) { return -1; }
+=======
+  struct dm_layout_g1_band *z = calloc(sizeof(struct dm_layout_g1_band), 1);
+
+  // check args  
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   if(z == NULL) { return -1; }
   if(n < 0 || n >= l->bands_len) { return -1; }
 

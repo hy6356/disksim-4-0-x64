@@ -119,9 +119,16 @@ getdevbyname(char *name,
 
 void device_initialize_deviceinfo (void)
 {
+<<<<<<< HEAD
   if (disksim->deviceinfo == NULL) {
     disksim->deviceinfo = calloc (1, sizeof(device_info_t));
   }
+=======
+   if (disksim->deviceinfo == NULL) {
+      disksim->deviceinfo = malloc (sizeof(device_info_t));
+      bzero ((char *)disksim->deviceinfo, sizeof(device_info_t));
+   }
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 void device_add(struct device_header *d, int ldevno) {
@@ -138,6 +145,7 @@ void device_add(struct device_header *d, int ldevno) {
   /* note that numdisks must be equal to diskinfo->disks_len */
   newlen = numdevices ? (2 * numdevices) : 2;
   zerocnt = (newlen == 2) ? 2 : (newlen/2);
+<<<<<<< HEAD
   disksim->deviceinfo->devicenames = 
     realloc(disksim->deviceinfo->devicenames, newlen * sizeof(char *));
   bzero(&(disksim->deviceinfo->devicenames[c]), zerocnt * sizeof(char *));
@@ -152,6 +160,25 @@ void device_add(struct device_header *d, int ldevno) {
 					 newlen*sizeof(void*));
   bzero(&(disksim->deviceinfo->devices[c]), zerocnt * sizeof(void*));
 
+=======
+  char **tmpdevname = calloc(newlen, sizeof(char *));
+  int *newdevnos    = calloc(newlen, sizeof(int));
+  int *newdevtypes  = calloc(newlen, sizeof(int));
+  struct deviceheader **newdevs = calloc(newlen, sizeof(struct deviceheader *));
+ 
+       if (numdevices){
+             memcpy(tmpdevname, disksim->deviceinfo->devicenames, numdevices * sizeof(char*));
+            memcpy(newdevnos, devicenos, numdevices * sizeof(int));
+             memcpy(newdevtypes, devicetypes, numdevices * sizeof(int));
+             memcpy(newdevs, disksim->deviceinfo->devices,
+                     numdevices * sizeof(struct deviceheader *));
+           }
+         
+           disksim->deviceinfo->devicenames = tmpdevname;
+         devicenos = newdevnos;
+          devicetypes = newdevtypes;
+          disksim->deviceinfo->devices = newdevs;
+>>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   disksim->deviceinfo->devs_len = newlen;
 
  foundslot:
