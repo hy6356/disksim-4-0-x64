@@ -29,20 +29,12 @@
 
 include .paths
 
-<<<<<<< HEAD
 LDFLAGS = -lm -L. 
-=======
-LDFLAGS = -lm -L.
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
 DEBUG_OFLAGS = -g -DASSERTS # -DDEBUG=1
 PROF_OFLAGS = -g -DASSERTS -p
 GPROF_OFLAGS = -g -DASSERTS -pg
-<<<<<<< HEAD
 CFLAGS = -fPIC $(DEBUG_OFLAGS) $(DISKSIM_CFLAGS) -I../ -I$(DISKSIM_PREFIX)/src 
-=======
-CFLAGS = $(DEBUG_OFLAGS) $(DISKSIM_CFLAGS) -I../ -I$(DISKSIM_PREFIX)/src
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
 CC = gcc -Wall -Wno-unused -MD
 CP = cp -p
@@ -86,11 +78,7 @@ $(MEMS_OBJ): %.o: %.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
 mems_seektest: mems_seektest.o libmems_internals.a
-<<<<<<< HEAD
 	$(CC) -o $@ mems_seektest.o $(CFLAGS) -lmems_internals $(LDFLAGS) 
-=======
-	$(CC) -o $@ mems_seektest.o $(LDFLAGS) $(CFLAGS) -lmems_internals
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
 libmems_internals.a: mems_internals.o mems_piecewise_seek.o mems_hong_seek.o
 	ar cru $@ mems_internals.o mems_piecewise_seek.o mems_hong_seek.o

@@ -3752,12 +3752,7 @@ void ioqueue_cleanstats (ioqueue *queue)
 
 ioqueue * ioqueue_createdefaultqueue ()
 {
-<<<<<<< HEAD
    ioqueue * queue = (ioqueue *) calloc(1, sizeof(ioqueue));
-=======
-   ioqueue * queue = (ioqueue *) malloc(sizeof(ioqueue));
-   bzero(queue, sizeof(ioqueue));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
    queue->printqueuestats  = 1;
    queue->printcritstats   = 1;
@@ -3808,12 +3803,7 @@ struct ioq *disksim_ioqueue_loadparams(struct lp_block *b,
 {
   struct ioq *result;
 
-<<<<<<< HEAD
   result = calloc(1, sizeof(ioqueue));
-=======
-  result = malloc(sizeof(ioqueue));
-  bzero(result, sizeof(ioqueue));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   result->printqueuestats = printqueuestats;
   result->printcritstats = printcritstats;
@@ -3912,10 +3902,7 @@ static void ioqueue_printqueuestats (ioqueue **set, int setsize, char *prefix)
    fprintf (outputfile, "%sNumber of batches:  %d\n", prefix, stat_get_count_set(statset, setsize));
    stat_print_set(statset, setsize, prefix);
    free(statset);
-<<<<<<< HEAD
    statset = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -3945,10 +3932,7 @@ static void ioqueue_printintarrstats (ioqueue **set, int setsize, char *prefix)
    }
    stat_print_set(statset, setsize, prefix);
    free(statset);
-<<<<<<< HEAD
    statset = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -3978,10 +3962,7 @@ static void ioqueue_printsizestats (ioqueue **set, int setsize, char *prefix)
    }
    stat_print_set(statset, setsize, prefix);
    free(statset);
-<<<<<<< HEAD
    statset = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -4002,10 +3983,7 @@ static void ioqueue_printidlestats (ioqueue **set, int setsize, char *prefix)
    fprintf (outputfile, "%sNumber of idle periods:  %d\n", prefix, stat_get_count_set(statset, setsize));
    stat_print_set(statset, setsize, prefix);
    free(statset);
-<<<<<<< HEAD
    statset = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -4053,10 +4031,7 @@ static void ioqueue_printcritstats (subqueue **set, int setsize, char *prefix, i
    sprintf(prefix2, "%sNon-Critical Write ", prefix);
    stat_print_set(statset, setsize, prefix2);
    free(statset);
-<<<<<<< HEAD
    statset = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -4121,10 +4096,7 @@ static void ioqueue_subqueue_printstats (subqueue **set, int setsize, char *pref
    }
    stat_print_set(statset, setsize, prefix);
    free(statset);
-<<<<<<< HEAD
    statset = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -4295,10 +4267,7 @@ void ioqueue_printstats (ioqueue **set, int setsize, char *sourcestr)
 
    free(subset);
    free(statset);
-<<<<<<< HEAD
    subset = NULL;
    statset = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 

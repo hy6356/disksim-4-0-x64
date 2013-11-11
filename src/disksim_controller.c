@@ -430,14 +430,8 @@ int disksim_ctlr_stats_loadparams(struct lp_block *b) {
   ctlrinfo_t *ctlrinfo;
 
   if(disksim->ctlrinfo == NULL) {
-<<<<<<< HEAD
     disksim->ctlrinfo = calloc(1, sizeof(ctlrinfo_t));
     if(!disksim->ctlrinfo) return 0;
-=======
-    disksim->ctlrinfo = malloc(sizeof(ctlrinfo_t));
-    if(!disksim->ctlrinfo) return 0;
-    bzero((char *)disksim->ctlrinfo, sizeof(ctlrinfo_t));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   }
   ctlrinfo = disksim->ctlrinfo;
 
@@ -451,11 +445,7 @@ int disksim_ctlr_stats_loadparams(struct lp_block *b) {
 
 
 controller *controller_copy(controller *orig) {
-<<<<<<< HEAD
   controller *result = calloc(1, sizeof(controller));
-=======
-  controller *result = malloc(sizeof(controller));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   if(!result) return 0;
   memcpy(result, orig, sizeof(controller));
   result->cache = orig->cache->cache_copy(orig->cache);
@@ -497,7 +487,6 @@ struct controller *disksim_ctlr_loadparams(struct lp_block *b)
   {
     int newlen = c ? 2*c : 2;
     int zerooff = (newlen == 2) ? 0 : c;
-<<<<<<< HEAD
     int zerolen = ((newlen == 2) ? 2 : (newlen / 2));
     
     if ( zerooff == 0 )
@@ -511,14 +500,6 @@ struct controller *disksim_ctlr_loadparams(struct lp_block *b)
       bzero(&(disksim->ctlrinfo->controllers[zerooff]), zerolen*sizeof(int*));
     }
 
-=======
-    int zerolen = ((newlen == 2) ? 2 : (newlen / 2)) * sizeof(int *);
-    
-    disksim->ctlrinfo->controllers = realloc(disksim->ctlrinfo->controllers,
-					     newlen * sizeof(int *));
-    
-    bzero(disksim->ctlrinfo->controllers + zerooff, zerolen);
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
     disksim->ctlrinfo->ctlrs_len = newlen;
   }
 
@@ -527,14 +508,8 @@ struct controller *disksim_ctlr_loadparams(struct lp_block *b)
   disksim->ctlrinfo->numcontrollers++;
 
   /* allocate a new controller struct */
-<<<<<<< HEAD
   result = calloc(1, sizeof(controller));
   if(!result) return 0;
-=======
-  result = malloc(sizeof(controller));
-  if(!result) return 0;
-  bzero(result, sizeof(controller));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   disksim->ctlrinfo->controllers[c] = result;
   bzero(result, sizeof(controller));
@@ -830,12 +805,7 @@ int load_ctlr_topo(struct lp_topospec *t, int *inbus) {
   if(!ctlr->outbuses) {
     ctlr->numoutbuses = 0;
     slots = t->l->values_len;
-<<<<<<< HEAD
     ctlr->outbuses = calloc(1, slots * sizeof(int));
-=======
-    ctlr->outbuses = malloc(slots * sizeof(int));
-    bzero(ctlr->outbuses, slots * sizeof(int));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   }
 
   for(c = 0; c < t->l->values_len; c++) {

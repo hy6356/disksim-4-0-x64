@@ -480,10 +480,7 @@ void disksim_free_disksim(struct disksim_interface *iface) {
   disksim_cleanup();
   free(iface->disksim);
   free(iface);
-<<<<<<< HEAD
   iface = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 double disksim_time_to_msec(double x) { return x; }

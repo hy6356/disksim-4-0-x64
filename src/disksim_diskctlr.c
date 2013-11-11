@@ -469,20 +469,12 @@ static void disk_request_complete(disk *currdisk,
 	       "HDA_OWNED set for fixed-access-time disk");
 
 
-<<<<<<< HEAD
     ddbg_assert2(ioqueue_get_specific_request(currdisk->queue,tmpioreq) != NULL,
-=======
-    ddbg_assert2(ioqueue_get_specific_request(currdisk->queue,tmpioreq),
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 	       "ioreq_event not found");
 
     disk_interferestats(currdisk, tmpioreq);
     /* GROK: this would seem to leak (or worse) for concatenating schedulers */
-<<<<<<< HEAD
     ddbg_assert2(ioqueue_physical_access_done(currdisk->queue,tmpioreq) != NULL,
-=======
-    ddbg_assert2(ioqueue_physical_access_done(currdisk->queue,tmpioreq),
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 	       "ioreq_event not found");
 
     currdisk->currentbus = 
@@ -502,31 +494,18 @@ static void disk_request_complete(disk *currdisk,
   } 
   else if(tmpioreq->flags & READ) {
     while (tmpioreq) {
-<<<<<<< HEAD
       void* evtfound = 0;
       if(!(currdiskreq->flags & HDA_OWNED)) {
 
 	ddbg_assert2(ioqueue_get_specific_request(currdisk->queue,tmpioreq) != NULL,
-=======
-      int evtfound = 0;
-      if(!(currdiskreq->flags & HDA_OWNED)) {
-
-	ddbg_assert2(ioqueue_get_specific_request(currdisk->queue,tmpioreq),
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 		   "ioreq_event not found");
 	
 	disk_interferestats(currdisk, tmpioreq);
       }
 
-<<<<<<< HEAD
       evtfound = ioqueue_physical_access_done(currdisk->queue,tmpioreq);
 
       ddbg_assert2(evtfound != NULL, "ioreq_event not found");
-=======
-      evtfound = (int)ioqueue_physical_access_done(currdisk->queue,tmpioreq);
-
-      ddbg_assert2(evtfound != 0, "ioreq_event not found");
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
       tmpioreq = tmpioreq->next;
     }
@@ -3242,11 +3221,7 @@ disk_buffer_request_complete(disk *currdisk, diskreq *currdiskreq)
     if(!reading) {
       tmpioreq = currdiskreq->ioreqlist;
       while (tmpioreq) {
-<<<<<<< HEAD
 	ddbg_assert2(ioqueue_physical_access_done(currdisk->queue,tmpioreq) != NULL,
-=======
-	ddbg_assert2(ioqueue_physical_access_done(currdisk->queue,tmpioreq),
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 		   "disk_buffer_request_complete:  ioreq_event "
 		   "not found by ioqueue_physical_access_done call");
 
@@ -3275,11 +3250,7 @@ static void disk_got_remapped_sector (disk *currdisk, ioreq_event *curr)
   diskreq *currdiskreq = currdisk->effectivehda;
   segment *seg;
 
-<<<<<<< HEAD
   ddbg_assert2(currdiskreq != NULL, "No effectivehda");
-=======
-  ddbg_assert2(currdiskreq, "No effectivehda");
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   seg = currdiskreq->seg;
   if(seg->outstate == BUFFER_PREEMPT) {

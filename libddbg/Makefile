@@ -32,11 +32,7 @@
 
 # needs bitvector.h
 # -D_LIBDDBG_FREEBSD for freebsd kernel
-<<<<<<< HEAD
 CFLAGS = -g -fPIC -I../libparam
-=======
-CFLAGS = -g -I../libparam
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
 all: libddbg.a
 	mkdir -p include/libddbg lib
@@ -54,11 +50,7 @@ distclean: clean
 	rm -f *~
 
 libddbg.a: $(LT_OBJ)
-<<<<<<< HEAD
 	ar crus $@ $^
-=======
-	ar cru $@ $^
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
 
 #test: test.c libddbg.a libddbg.h

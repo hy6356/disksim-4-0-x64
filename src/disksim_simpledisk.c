@@ -741,17 +741,9 @@ void simpledisk_setcallbacks ()
 
 static void simpledisk_initialize_diskinfo ()
 {
-<<<<<<< HEAD
    disksim->simplediskinfo = calloc (1, sizeof(simplediskinfo_t));
    disksim->simplediskinfo->simpledisks = calloc(1, MAXDEVICES * (sizeof(simpledisk_t)));
    disksim->simplediskinfo->simpledisks_len = MAXDEVICES;
-=======
-   disksim->simplediskinfo = malloc (sizeof(simplediskinfo_t));
-   bzero ((char *)disksim->simplediskinfo, sizeof(simplediskinfo_t));
-   disksim->simplediskinfo->simpledisks = malloc(MAXDEVICES * (sizeof(simpledisk_t)));
-   disksim->simplediskinfo->simpledisks_len = MAXDEVICES;
-   bzero ((char *)disksim->simplediskinfo->simpledisks, (MAXDEVICES * (sizeof(simpledisk_t))));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -816,13 +808,8 @@ int simpledisk_add(struct simpledisk *d) {
     realloc(disksim->simplediskinfo->simpledisks, 
 	    2 * c * sizeof(struct simpledisk *));
 
-<<<<<<< HEAD
   bzero(&(disksim->simplediskinfo->simpledisks[numsimpledisks]), 
 	numsimpledisks*sizeof(void*));
-=======
-  bzero(disksim->simplediskinfo->simpledisks + numsimpledisks, 
-	numsimpledisks);
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   disksim->simplediskinfo->simpledisks[c] = d;
   numsimpledisks++;
@@ -839,14 +826,8 @@ struct simpledisk *disksim_simpledisk_loadparams(struct lp_block *b)
 
   if(!disksim->simplediskinfo) simpledisk_initialize_diskinfo();
 
-<<<<<<< HEAD
   result = calloc(1, sizeof(struct simpledisk));
   if(!result) return 0;
-=======
-  result = malloc(sizeof(struct simpledisk));
-  if(!result) return 0;
-  bzero(result, sizeof(struct simpledisk));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   
   num = simpledisk_add(result);
 
@@ -865,12 +846,7 @@ struct simpledisk *disksim_simpledisk_loadparams(struct lp_block *b)
 
 
 struct simpledisk *simpledisk_copy(struct simpledisk *orig) {
-<<<<<<< HEAD
   struct simpledisk *result = calloc(1, sizeof(struct simpledisk));
-=======
-  struct simpledisk *result = malloc(sizeof(struct simpledisk));
-  bzero(result, sizeof(struct simpledisk));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   memcpy(result, orig, sizeof(struct simpledisk));
   result->queue = ioqueue_copy(orig->queue);
 

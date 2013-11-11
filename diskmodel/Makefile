@@ -35,11 +35,7 @@ include .paths
 # -D_DISKMODEL_FREEBSD for the freebsd kernel (malloc foo)
 # -D_BSD_SOURCE for bsd-ish userspace to get uint32 and friends from the
 # right place
-<<<<<<< HEAD
 CFLAGS = -g -I. -fPIC $(LIBPARAM_CFLAGS) $(LIBDDBG_CFLAGS) -D_DM_SOURCE -Wall -Wshadow -Wno-unused -MD  # -O6  -fomit-frame-pointer -fexpensive-optimizations -fschedule-insns2 -march=pentium4
-=======
-CFLAGS = -g -I. $(LIBPARAM_CFLAGS) $(LIBDDBG_CFLAGS) -D_DM_SOURCE -Wall -Wshadow -Wno-unused -MD  # -O6  -fomit-frame-pointer -fexpensive-optimizations -fschedule-insns2 -march=pentium4
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
 CXXFLAGS = -g -I. $(LIBPARAM_CFLAGS) $(LIBDDBG_CFLAGS) -D_DM_SOURCE -Wall -Wno-unused  -MD
 
@@ -84,22 +80,13 @@ DM_USERSPACE_OBJ =  $(DM_LOADER_OBJ) $(DM_USERSPACE_SRC:.c=.o)
 libdiskmodel.a:	$(DM_OBJ) $(DM_USERSPACE_OBJ) 
 	$(MAKE) -C modules
 	@echo "Linking libdiskmodel.a $(DM_USERSPACE_OBJ)"
-<<<<<<< HEAD
 	ar crus $@ $(DM_OBJ) $(DM_USERSPACE_OBJ)
-=======
-	ar cru $@ $(DM_OBJ) $(DM_USERSPACE_OBJ)
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 	mkdir -p lib
 	$(CP) libdiskmodel.a lib
 
 # for kernel
 #libdiskmodel.a: modules $(DM_OBJ)
-<<<<<<< HEAD
 #	ar crus $@ $(DM_OBJ)
-=======
-#	ar cru $@ $(DM_OBJ)
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
-
 clean:
 	rm -f *.o
 	$(MAKE) -C modules clean

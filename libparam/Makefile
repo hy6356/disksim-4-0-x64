@@ -39,11 +39,7 @@ FLEX=flex
 BISON=bison
 YACC=$(BISON)
 
-<<<<<<< HEAD
 CFLAGS=-g -fPIC -I$(LIBDDBG_INCL) -Wall
-=======
-CFLAGS=-g -I$(LIBDDBG_INCL) -Wall
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
 # input file parser
 lex.libparam.c:	libparam.lex libparam.tab.h libparam.h
@@ -57,11 +53,7 @@ LIBPARAM_SRC =  util.c libparam.tab.c  lex.libparam.c
 LIBPARAM_OBJ = $(LIBPARAM_SRC:.c=.o)
 
 libparam.a: $(LIBPARAM_OBJ)
-<<<<<<< HEAD
 	ar crus $@ $^ 
-=======
-	ar cru $@ $^ 
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
 
 dump_tlts: dump_tlts.o libparam.a

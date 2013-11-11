@@ -57,13 +57,8 @@ static void disksim_topoloader(struct lp_topospec *ts, int len) {
 int disksim_loadparams(char *inputfile, int synthgen) {
   int rv;
   int c;
-<<<<<<< HEAD
   struct lp_tlt **tlts = NULL;
   int tlts_len = 0;
-=======
-  struct lp_tlt **tlts;
-  int tlts_len;
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   // register modules with libparam
   for(c = 0; c <= DISKSIM_MAX_MODULE; c++) {

@@ -50,10 +50,7 @@ struct disksim_request {
   int batchno;
   int batch_complete;
   void *reqctx;         /* context passed with the request */
-<<<<<<< HEAD
   short completed;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 };
 
 struct disksim_interface;

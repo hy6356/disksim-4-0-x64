@@ -720,12 +720,7 @@ loadsynthgenerators(synthio_generator *junk,
     return -1;
   }
 
-<<<<<<< HEAD
   synthio_gens = calloc(1, l->values_len * sizeof(synthio_generator));
-=======
-  synthio_gens = malloc(l->values_len * sizeof(synthio_generator));
-  bzero(synthio_gens, l->values_len * sizeof(synthio_generator));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   disksim->synthio_info->synthio_gens_len = l->values_len;
 
   for(c = 0; c < l->values_len; c++) {
@@ -875,12 +870,7 @@ int loadsynthdevs(synthio_generator *result, struct lp_list *l);
 
 static int loadgen(struct lp_block *b, synthio_generator **result) {
 
-<<<<<<< HEAD
   (*result) = calloc(1, sizeof(synthio_generator));
-=======
-  (*result) = malloc(sizeof(synthio_generator));
-  bzero((*result), sizeof(synthio_generator));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   //#include "modules/disksim_synthgen_param.c"
   lp_loadparams(result, b, &disksim_synthgen_mod);
@@ -901,12 +891,7 @@ loadsynthdevs(synthio_generator *result, struct lp_list *l)
   char *name;
   int slot = 0;
 
-<<<<<<< HEAD
   result->devno = calloc(1, l->values_len * sizeof(int));
-=======
-  result->devno = malloc(l->values_len * sizeof(int));
-  bzero(result->devno, l->values_len * sizeof(int));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   
   for(c = 0; c < l->values_len; c++) {
     if(!l->values[c]) continue;

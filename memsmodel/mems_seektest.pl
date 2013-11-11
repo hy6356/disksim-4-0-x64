@@ -53,11 +53,7 @@ if ($optctl{"mode"}) {
 $GNUPLOT = "gnuplot";
 $XV = "/usr/X11R6/bin/xv";
 $GNUPLOT_FILE = "gnuplottemp";
-<<<<<<< HEAD
 $SEEK_TEST2 = "./mems_seektest";
-=======
-$SEEK_TEST2 = "/home/schlos/Work/disksim-memsmodel/memsmodel/mems_seektest";
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 # $SEEK_TEST2 = "./mems_seektest";
 $TEST_FILENAME = "testme";
 

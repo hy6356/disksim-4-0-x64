@@ -34,16 +34,10 @@ PARAM MODULE mems
 HEADER \#include "../mems_global.h"
 RESTYPE struct mems *
 PROTO struct mems *memsmodel_mems_loadparams(struct lp_block *b, int *num);
-<<<<<<< HEAD
 PROTO struct ioq *disksim_ioqueue_loadparams(struct lp_block *b, int printqueuestats, int printcritstats, int printidlestats, int printintarrstats, int printsizestats);
 
 PARAM Scheduler					BLOCK	1 
 TEST result->queue = disksim_ioqueue_loadparams(blk, device_printqueuestats, device_printcritstats, device_printidlestats, device_printintarrstats, device_printsizestats)
-=======
-
-PARAM Scheduler					BLOCK	1 
-TEST result->queue = (struct ioq *)disksim_ioqueue_loadparams(blk, device_printqueuestats, device_printcritstats, device_printidlestats, device_printintarrstats, device_printsizestats)
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 # INIT ioqueue_initialize(result->queue, 0);
 
 An ioqueue; see Section \ref{param.queue}

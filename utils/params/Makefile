@@ -31,27 +31,16 @@ all: $(TARGETS)
 
 include .paths
 
-<<<<<<< HEAD
 DISKSIM_CFLAGS=-m32 -I../../src
 DISKSIM_LDFLAGS=-m32 -L../../src -ldisksim
 
 CFLAGS = -g -fPIC -m32\
-=======
-DISKSIM_CFLAGS=-I../../src
-DISKSIM_LDFLAGS=-L../../src -ldisksim
-
-CFLAGS = -g \
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
         $(DISKSIM_CFLAGS) \
         $(DISKMODEL_CFLAGS) \
         $(LIBPARAM_CFLAGS) \
         $(LIBDDBG_CFLAGS) 
 
-<<<<<<< HEAD
 LDFLAGS = -m32 $(DISKSIM_LDFLAGS) \
-=======
-LDFLAGS = $(DISKSIM_LDFLAGS) \
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 	  $(DISKMODEL_LDFLAGS) \
           $(LIBPARAM_LDFLAGS) \
           $(LIBDDBG_LDFLAGS) -lm

@@ -152,10 +152,6 @@ lp_new_param(char *name, char *source, struct lp_value *v)
   result->source_file = source;
   result->name = name;
   result->v = v;
-<<<<<<< HEAD
-=======
-  
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   return result;
 }
@@ -228,10 +224,7 @@ static void destroy_param(struct lp_param *p)
   free(p->name);
   destroy_value(p->v);
   free(p);
-<<<<<<< HEAD
   p = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -243,10 +236,7 @@ static void destroy_list(struct lp_list *l) {
 
   free(l->values);
   free(l);
-<<<<<<< HEAD
   l = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -276,10 +266,7 @@ static void destroy_value(struct lp_value *v) {
   }
 
   free(v);
-<<<<<<< HEAD
   v = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -294,10 +281,7 @@ static void destroy_block(struct lp_block *b) {
   free(b->name);
   free(b->params);
   free(b);
-<<<<<<< HEAD
   b = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 static void destroy_topospec(struct lp_topospec *t)
@@ -305,7 +289,6 @@ static void destroy_topospec(struct lp_topospec *t)
   free(t->type);
   free(t->name);
   destroy_list(t->l);
-<<<<<<< HEAD
   t = NULL;
 }
 
@@ -319,20 +302,6 @@ static struct lp_block *copy_block(const struct lp_block *b)
 {
   int c;
   struct lp_block *result = calloc(1, sizeof(struct lp_block));
-=======
-}
-
-
-static struct lp_block *copy_block(struct lp_block *);
-static struct lp_list *copy_list(struct lp_list *);
-static struct lp_value *copy_value(struct lp_value *);
-static struct lp_param *copy_param(struct lp_param *);
-
-static struct lp_block *copy_block(struct lp_block *b)
-{
-  int c;
-  struct lp_block *result = calloc(1, sizeof(*result));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   memcpy(result, b, sizeof(struct lp_block));
   result->params = calloc(b->params_len, sizeof(result->params[0]));
 
@@ -350,11 +319,7 @@ static struct lp_block *copy_block(struct lp_block *b)
 }
 
 
-<<<<<<< HEAD
 static struct lp_list *copy_list(const struct lp_list *l) {
-=======
-static struct lp_list *copy_list(struct lp_list *l) {
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   int c;
   struct lp_list *result = calloc(1, sizeof(*result));
   memcpy(result, l, sizeof(struct lp_list));
@@ -369,11 +334,7 @@ static struct lp_list *copy_list(struct lp_list *l) {
 }
 
 
-<<<<<<< HEAD
 static struct lp_value *copy_value(const struct lp_value *v) {
-=======
-static struct lp_value *copy_value(struct lp_value *v) {
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   struct lp_value *result = calloc(1, sizeof(struct lp_value));
   memcpy(result, v, sizeof(struct lp_value));
   switch(v->t) {
@@ -396,11 +357,7 @@ static struct lp_value *copy_value(struct lp_value *v) {
   return result;
 }
 
-<<<<<<< HEAD
 static struct lp_param *copy_param(const struct lp_param *p) {
-=======
-static struct lp_param *copy_param(struct lp_param *p) {
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   struct lp_param *result = calloc(1, sizeof(struct lp_param));
   result->name = strdup(p->name);
   result->v = copy_value(p->v);
@@ -607,10 +564,6 @@ int lp_inst_list(struct lp_inst *i)
   int c;
   
   /*      unparse_block(spec, outputfile); */
-<<<<<<< HEAD
-=======
-
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   for(c = 0; c < i->l->values_len; c++) {
     if(!i->l->values[c]) continue;
     
@@ -652,10 +605,6 @@ int *lp_instantiate(char *targ, char *name) {
   // swap the name back
   spec->name = nametmp;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   if(!obj) {
     return 0;
   }
@@ -776,11 +725,7 @@ struct lp_list *lp_list_add(struct lp_list *l,
   }
   newlen = 2 * c * sizeof(struct lp_value *);
   l->values = realloc(l->values, newlen);
-<<<<<<< HEAD
   bzero(&(l->values[c]), newlen / 2);
-=======
-  bzero(l->values + c, newlen / 2);
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   l->values_len *= 2;
 
  done:
@@ -963,11 +908,7 @@ int lp_add_type(char *newt, char *parent) {
 
     lp_typetbl = realloc(lp_typetbl, newlen * sizeof(int *));
 
-<<<<<<< HEAD
     bzero(&(lp_typetbl[c]), c * sizeof(int *));
-=======
-    bzero(lp_typetbl + c, c * sizeof(int *));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
     lp_typetbl_len = newlen;
   }
   else return -1;
@@ -998,27 +939,17 @@ int lp_add_param(struct lp_param ***b, int *plen,
       (*b)[c] = p;
       break;
     }
-<<<<<<< HEAD
     printf("%d: name = %s\n", c, (*b)[c]->name);
-=======
-    printf("%d: name =%s\n", c, (*b)[c]->name);
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   }
   fflush(stdout);
   if(c == *plen) {
     /* didn't find a free slot -- double the array */
     int newlen = 2 * (*plen) + 1;
-<<<<<<< HEAD
     //(*b) = realloc((*b), newlen * sizeof(int *));
     //bzero(&((*b)[*plen]), ((*plen) + 1) * sizeof(int*));
     struct lp_param **new = calloc(newlen, sizeof(struct lp_param *));
     memcpy(new, *b, (*plen) * sizeof(struct lp_param *));
     (*b) = new;
-=======
-   struct lp_param **new = calloc(newlen, sizeof(struct lp_param *));
-    memcpy(new, *b, (*plen) * sizeof(struct lp_param *));
-   (*b) = new;
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
     (*b)[(*plen)] = p;
     *plen = newlen;
   }
@@ -1058,13 +989,8 @@ void lp_init_typetbl(void) {
 
   for(c = 0; c < lp_max_mod; c++) {
 
-<<<<<<< HEAD
     lp_typetbl[c] = calloc(1, sizeof(struct lp_subtype));
     //    bzero(lp_typetbl[c], sizeof(struct lp_subtype));
-=======
-    lp_typetbl[c] = malloc(sizeof(struct lp_subtype));
-    bzero(lp_typetbl[c], sizeof(struct lp_subtype));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
     lp_typetbl[c]->sub = strdup(lp_modules[c]->name);
   }
 
@@ -1090,10 +1016,7 @@ void lp_release_typetbl(void) {
   }
 
   free(lp_typetbl);
-<<<<<<< HEAD
   lp_typetbl = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 }
 
 
@@ -1210,22 +1133,14 @@ int range_match(char *range, char *name) {
  * cname name of instantiated component
  * loader is the module loader function for tname
  */
-<<<<<<< HEAD
 int *lp_override_inst(const struct lp_block *spec, 
-=======
-int *lp_override_inst(struct lp_block *spec, 
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 		  char *cname, 
 		  lp_modloader_t loader,
 		  char **overrides,
 		  int overrides_len)
 {
   int c, d;
-<<<<<<< HEAD
   struct lp_block *spec_copy = NULL;
-=======
-  struct lp_block *spec_copy;
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   char *p1, *p2; 
   int *result;
   
@@ -1448,10 +1363,7 @@ lp_loadparams(void *it, struct lp_block *b, struct lp_mod *m) {
   }
 
   free(paramvec);
-<<<<<<< HEAD
   paramvec = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   return 0; // ???
 }

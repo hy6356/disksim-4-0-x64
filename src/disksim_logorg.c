@@ -702,18 +702,11 @@ int logorg_maprequest (logorg **logorgs, int numlogorgs, ioreq_event *curr)
    outstand *req = NULL;
    ioreq_event *temp;
    int orgdevno;
-<<<<<<< HEAD
 
 //   fprintf (outputfile, "Entered logorg_maprequest - numlogorgs %d, devno %d, blkno %d, event type %d, if addrbyparts %d, time %f\n",
 //	                                             numlogorgs, curr->devno, curr->blkno, curr->type, logorgs[0]->addrbyparts, simtime);
 //   fprintf (outputfile, "flags %x, opid %d\n", curr->flags, curr->opid);
 
-=======
-/*
-fprintf (outputfile, "Entered logorg_maprequest - numlogorgs %d, devno %d, blkno %d, time %f\n", numlogorgs, curr->devno, curr->blkno, simtime);
-fprintf (outputfile, "flags %x, opid %d\n", curr->flags, curr->opid);
-*/
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
    ASSERT1((numlogorgs >= 1) && (numlogorgs < MAXLOGORGS), "numlogorgs", numlogorgs);
 
@@ -734,22 +727,15 @@ fprintf (outputfile, "flags %x, opid %d\n", curr->flags, curr->opid);
    req->reqopid = curr->opid;
    req->depend = NULL;
 
-<<<<<<< HEAD
    for (i = 0; i < numlogorgs; i++)
    {
      // i.e. array
      if (!logorgs[i]->addrbyparts)
      {
-=======
-   for (i = 0; i < numlogorgs; i++) {
-     // i.e. array
-     if (!logorgs[i]->addrbyparts) {
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
        if ((curr->devno == logorgs[i]->arraydisk) 
 	   && ((curr->blkno + curr->bcount) < 
 	       (logorgs[i]->blksperpart * logorgs[i]->numdisks)) 
 	   && (curr->blkno >= 0)) 
-<<<<<<< HEAD
 	 {
 	   logorgno = i;
 //	   fprintf (outputfile, "Entered loop i - numlogorgs %d, loop_i= %d, time %f\n", numlogorgs, i, simtime);
@@ -786,26 +772,6 @@ fprintf (outputfile, "flags %x, opid %d\n", curr->flags, curr->opid);
        }
        if (logorgno != -1)
        {
-=======
-
-	 {
-	   logorgno = i;
-	   break;
-	 }
-     }
-     else {
-       /* ???? */
-       /*           for (j = 0; j < logorgs[i]->numdisks; j++) { */
-       for(j = 0; j < logorgs[i]->actualnumdisks; j++) {
-	 if (curr->devno == logorgs[i]->devs[j].devno) {
-	   if(logorg_overlap(logorgs[i], j, curr, logorgs[i]->blksperpart)) {
-	     logorgno = i;
-	     break;
-	   }
-	 }
-       }
-       if (logorgno != -1) {
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 	 break;
        }
      }
@@ -814,10 +780,7 @@ fprintf (outputfile, "flags %x, opid %d\n", curr->flags, curr->opid);
    /* Every request must be covered by a logorg */
    if (logorgno == -1) {
       fprintf (stderr, "unexpected request location: devno %x, blkno %d, bcount %d\n", curr->devno, curr->blkno, curr->bcount);
-<<<<<<< HEAD
       fprintf (outputfile, "unexpected request location: devno %x, blkno %d, bcount %d\n", curr->devno, curr->blkno, curr->bcount);
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
    }
    ASSERT(logorgno != -1);
    maptype = logorgs[logorgno]->maptype;
@@ -1649,12 +1612,7 @@ int getlogorgdevs(logorg *result, struct lp_list *l) {
   int devno, devtype;
   int slot = 0;
 
-<<<<<<< HEAD
   result->devs = calloc(1, l->values_len * sizeof(logorgdev));
-=======
-  result->devs = malloc(l->values_len * sizeof(logorgdev));
-  bzero(result->devs, l->values_len * sizeof(logorgdev));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   for(c = 0; c < l->values_len; c++) {
     if(!l->values[c]) continue;
@@ -1710,12 +1668,7 @@ struct logorg *disksim_logorg_loadparams(struct lp_block *b)
   //  double rmwpoint = 0.0;
 
 
-<<<<<<< HEAD
   result = calloc(1, sizeof(struct logorg));
-=======
-  result = malloc(sizeof(struct logorg));
-  bzero(result, sizeof(struct logorg));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   //#include "modules/disksim_logorg_param.c"
   lp_loadparams(result, b, &disksim_logorg_mod);

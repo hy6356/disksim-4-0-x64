@@ -54,11 +54,7 @@ void yyerror (char *s) {
 
 %union {
   double d;
-<<<<<<< HEAD
   long i;
-=======
-  int i;
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   char *s;
 
   struct lp_block *b;
@@ -119,11 +115,7 @@ BLOCKS: { }
 ;
 
 INST: INSTANTIATE LIST AS STRING {
-<<<<<<< HEAD
   $$ = calloc(1, sizeof(struct lp_inst));
-=======
-  $$ = malloc(sizeof(struct lp_inst));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   $$->source_file = lp_filename;
   $$->l = $2;
   $$->name = $4;
@@ -132,11 +124,7 @@ INST: INSTANTIATE LIST AS STRING {
 TOPOSPEC: STRING STRING LIST {
 /*    printf("topospec\n"); */
 
-<<<<<<< HEAD
   $$.l = calloc(1, sizeof(struct lp_topospec));
-=======
-  $$.l = malloc(sizeof(struct lp_topospec));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   $$.l->source_file = lp_filename;
   $$.len = 1;
   $$.l[0].type = $1;
@@ -168,12 +156,7 @@ BLOCKDEF: STRING STRING LBRACE EXPS RBRACE
 
 /*    printf("start of blockdef: %s\n", $2); */
 
-<<<<<<< HEAD
   $$ = calloc(1, sizeof(struct lp_block));
-=======
-  $$ = malloc(sizeof(struct lp_block));
-  bzero($$, sizeof(struct lp_block));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   $$->source_file = lp_filename;
 
   $$->type = lp_mod_name(lp_lookup_base_type($1,0));
@@ -204,12 +187,7 @@ BLOCKDEF: STRING STRING LBRACE EXPS RBRACE
 
 
 BLOCKVAL: STRING LBRACE EXPS RBRACE {
-<<<<<<< HEAD
   $$ = calloc(1, sizeof(struct lp_block));
-=======
-  $$ = malloc(sizeof(struct lp_block));
-  bzero($$, sizeof(struct lp_block));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   $$->source_file = lp_filename;
   $$->name = 0;
   $$->params = $3.p;
@@ -231,12 +209,7 @@ BLOCKVAL: STRING LBRACE EXPS RBRACE {
 EXPS: { $$.p = 0; $$.plen = 0; }
 | EXP { 
 /*      printf("first exp\n");  */
-<<<<<<< HEAD
   $$.p = calloc(1, 8 * sizeof(int *)); 
-=======
-  $$.p = malloc(8 * sizeof(int *)); 
-  bzero($$.p, 8*sizeof(int *)); 
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   $$.plen = 8; 
   $$.p[0] = $1;
 }
@@ -246,23 +219,13 @@ EXPS: { $$.p = 0; $$.plen = 0; }
 
 /*    printf("another exp\n");  */
 
-<<<<<<< HEAD
   $$.p = calloc(1, $1->values_len * sizeof(int *));
   $$.plen = $1->values_len;
-=======
-  $$.p = malloc($1->values_len * sizeof(int *));
-  $$.plen = $1->values_len;
-  bzero($$.p, $1->values_len * (sizeof(int *)));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
 
   for(c = 0; c < $1->values_len; c++) {
     if(!$1->values[c]) continue;
     ddbg_assert($1->values[c]->t == S);
-<<<<<<< HEAD
     tmp = calloc(1, sizeof(struct lp_param));
-=======
-    tmp = malloc(sizeof(struct lp_param));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
     tmp->name = $1->values[c]->v.s;
     tmp->v = $3;
     if(lp_add_param(&($$.p), &($$.plen), tmp)) YYABORT;
@@ -440,22 +403,14 @@ VALUE: NUM {
   $$->t = BLOCK;
 }
 | BLOCKDEF { 
-<<<<<<< HEAD
   $$ = calloc(1, sizeof(struct lp_value));
-=======
-  $$ = malloc(sizeof(struct lp_value));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   $$->source_file = lp_filename;
   $$->v.b = $1;
   $$->t = BLOCK;
 }
 | TOPOSPEC {
 /*    printf("topospec value\n"); */
-<<<<<<< HEAD
   $$ = calloc(1, sizeof(struct lp_value));
-=======
-  $$ = malloc(sizeof(struct lp_value));
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   $$->source_file = lp_filename;
   $$->v.t.l = $1.l;
   $$->v.t.len = $1.len;

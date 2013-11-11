@@ -321,10 +321,7 @@ g4_r(struct dm_layout_g4 *l,
 
  out_err:
   free(acc);
-<<<<<<< HEAD
   acc = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   return 0;
 }
 
@@ -423,10 +420,7 @@ ltop(struct dm_disk_if *d,
       }
     }
     free(p);
-<<<<<<< HEAD
     p = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   }
 
   return DM_OK;
@@ -499,10 +493,7 @@ ptol(struct dm_disk_if *d,
     }
 
     free(path);
-<<<<<<< HEAD
     path = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   }
 
   return result;
@@ -525,10 +516,7 @@ g4_spt(struct dm_layout_g4 *l,
     ddbg_assert(n->type == TRACK);
     rv = n->n.t->spt;
     free(p);
-<<<<<<< HEAD
     p = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   }
   else {
     rv = -1;
@@ -654,10 +642,7 @@ g4_sector_width(struct dm_disk_if *d,
       ddbg_assert(n->type == TRACK);
       result = n->n.t->sw;
       free(p);
-<<<<<<< HEAD
       p = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
     }
   }
 
@@ -709,10 +694,7 @@ g4_skew(struct dm_disk_if *d,
   }
 
   free(p);
-<<<<<<< HEAD
   p = NULL;
-=======
->>>>>>> b2a7ef9da759b6df9438c96bab636aa1cfb36ecc
   return result;
 }
 
